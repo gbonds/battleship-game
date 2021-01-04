@@ -1,9 +1,8 @@
-//TODO: once hit # issue fixed, add random number for location1 and +1, +2 for other locations
 //TODO: prevent user from guessing the same hit location after it's hit. can guess non-hit locations multiple times.
 
-var location1 = 3;
-var location2 = 4;
-var location3 = 5;
+var location1 = (Math.floor(Math.random() * 4))+1; //should result in random number between 1 and 4
+var location2 = location1+1;
+var location3 = location1+2;
 
 var guess;
 var hitCount = 0;
