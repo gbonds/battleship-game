@@ -1,4 +1,3 @@
-//ISSUE: the number of hits immediately goes to 3 as soon as 1 hit happens. 
 //TODO: once hit # issue fixed, add random number for location1 and +1, +2 for other locations
 //TODO: prevent user from guessing the same hit location after it's hit. can guess non-hit locations multiple times.
 
@@ -7,7 +6,7 @@ var location2 = 4;
 var location3 = 5;
 
 var guess;
-var hits = 0;
+var hitCount = 0;
 var guessCount = 0;
 
 var isSunk = false;
@@ -28,9 +27,9 @@ while (isSunk === false) {
       //checks to see if guess matches one of three locations BUT is this line where issue is coming from?
       if (guess == location1 || guess == location2 || guess == location3) {
         alert("HIT!");
-        hits = hits + 1;
+        hitCount = hitCount + 1;
         
-        if (hits = 3) {
+        if (hitCount == 3) { //must use equality operator == so that program is checking IF hitCount has reached 3.
           isSunk = true;
           alert("You sank my Battleship!");
         }
@@ -44,5 +43,5 @@ while (isSunk === false) {
 
 } //isSunk while ends
 
-var stats = "You took " + guessCount + " guesses to sink the battleship, which means your shooting accuracy was " + hits + " hits out of " + guessCount + " guesses.";
+var stats = "You took " + guessCount + " guesses to sink the battleship, which means your shooting accuracy was " + hitCount + " hits out of " + guessCount + " guesses.";
 alert(stats);
