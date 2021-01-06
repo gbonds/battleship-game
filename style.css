@@ -1,0 +1,46 @@
+body {
+    background-color: #111111;
+    color: white;
+}
+
+#board-container {
+    position: relative;
+    width: 1024px;
+    /* height: 863px; don't need height since I'm not using HFJS's background image */
+    margin: auto;
+    text-align: center;
+    border: 1px dotted red;
+}
+
+#board-container>div {
+    margin: 25px 0px;
+}
+
+#messageArea {
+    border: 1px solid green;
+}
+
+#gameGrid table {
+    position: relative;
+    margin: auto;
+    border-collapse: collapse; /* this prevents the td borders from doubling up */
+    background-color: #2e2e2e;
+}
+
+#gameGrid td {
+    width: 94px;
+    height: 94px;
+    border: 1px solid white;
+}
+
+#gameGrid .fas {
+    font-size: 48px;
+}
+
+.hit-icon {
+    color: green;
+}
+
+.miss-icon {
+    color: red;
+}

@@ -1,15 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Battleship</title>
+  <title>Play Battleship!</title>
+
+  <!-- CSS stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome kit -->
+  <script src="https://kit.fontawesome.com/43198c1f99.js" crossorigin="anonymous"></script>
+  <!-- TODO use following FontAwesome icons: times, bahai, crosshairs, ship-->
+
 </head>
+
 <body>
-  <h1>Play Battleship!</h1>
-  <script src="battleship.js">
-      
-  </script>
+
+  <div id="board-container">
+
+    <div id="gameInfoArea">
+      <h1>Play Battleship!</h1>
+      <div id="messageArea">This is the messageArea</div>
+    </div> <!-- #gameInfoArea ends -->
+
+    <div id="gameGrid">
+      <table>
+        <tr>
+          <!-- 1st row -->
+          <td id="01"></td>
+          <td id="02"></td>
+          <td id="03">
+            <i class="fas fa-bahai hit-icon"></i>
+          </td>
+          <td id="04">
+            <i class="fas fa-times miss-icon"></i>
+          </td>
+          <td id="05"></td>
+          <td id="06"></td>
+          <td id="07"></td>
+        </tr>
+        <tr>
+          <!-- 2nd row -->
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+        </tr>
+        <tr>
+          <!-- 3rd row -->
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+        </tr>
+        <tr>
+          <!-- 4th row -->
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+        </tr>
+        <tr>
+          <!-- 5th row -->
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+        </tr>
+        <tr>
+          <!-- 6th row -->
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+        </tr>
+        <tr>
+          <!-- 7th row -->
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+          <td id=""></td>
+        </tr>
+      </table>
+    </div> <!-- #gameGrid ends -->
+
+    <div id="userGuessArea">
+      <form>
+        <input type="text" id="guessInput" placeholder="A1">
+        <input type="button" id="fireButton" value="Fire!">
+      </form>
+    </div> <!--  #userGuessArea ends-->
+
+  </div> <!-- #board-container ends -->
+
+
+  <!-- script src="battleship.js"></script> -->
 
 </body>
+
 </html>
