@@ -12,25 +12,25 @@
 //// displays message for win, hit, or miss AND adds hit/miss symbols to grid cells
 var view = {
     displayMessage: function(msg) {
-        var messageArea = document.getElementById("messageArea");
+        var messageArea = document.getElementById('messageArea');
         messageArea.innerHTML = msg;
     },
     displayHit: function(location) {
         var cell = document.getElementById(location);
-        cell.setAttribute("class", "hit");
+        cell.setAttribute('class', 'hit');
         cell.innerHTML = '<i class="fas fa-bahai hit-icon"></i>';
     },
     displayMiss: function(location) {
         var cell = document.getElementById(location);
-        cell.setAttribute("class", "miss");
+        cell.setAttribute('class', 'miss');
         cell.innerHTML = '<i class="fas fa-times miss-icon"></i>';
     }
 };
 
 //// testing view object
-view.displayMiss("01");
-view.displayMiss("03");
-view.displayHit("05");
-view.displayHit("06");
-view.displayHit("07");
-view.displayMessage("Testing one, two, three.");
+view.displayMiss('01');
+view.displayMiss('03');
+view.displayHit('05');
+view.displayHit('06');
+view.displayHit('07');
+view.displayMessage('Testing one, two, three.');

@@ -24,12 +24,20 @@ body {
     position: relative;
     margin: auto;
     border-collapse: collapse; /* this prevents the td borders from doubling up */
-    background-color: #2e2e2e;
+}
+
+.column-header {
+    padding-bottom: 10px;
+}
+
+.row-header {
+    padding-right: 15px;
 }
 
 #gameGrid td {
     width: 94px;
     height: 94px;
+    background-color: #2e2e2e;
     border: 1px solid white;
 }
 
