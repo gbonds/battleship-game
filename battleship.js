@@ -1,4 +1,5 @@
 //TODO: prevent user from guessing the same hit location after it's hit. can guess non-hit locations multiple times.
+//TODO: build out responsive user-facing design in index.html
 
 var location1 = (Math.floor(Math.random() * 4))+1; //should result in random number between 1 and 4
 var location2 = location1+1;
