@@ -28,9 +28,9 @@ var view = {
 };
 
 //// testing view object
-view.displayMiss('01');
-view.displayMiss('03');
-view.displayHit('05');
-view.displayHit('06');
-view.displayHit('07');
+view.displayMiss('11');
+view.displayMiss('13');
+view.displayHit('15');
+view.displayHit('16');
+view.displayHit('17');
 view.displayMessage('Testing one, two, three.');
