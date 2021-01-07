@@ -47,7 +47,7 @@ var model = {
 
     // sets ship locations
     //// TODO make ship locations random
-    ships: [{ locations: ['06', '16', '26'], hits: ['', '', ''] },
+    ships: [ { locations: ['06', '16', '26'], hits: ['', '', ''] },
     { locations: ['24', '34', '44'], hits: ['', '', ''] },
     { locations: ['10', '11', '12'], hits: ['', '', ''] }
     ],
@@ -58,13 +58,13 @@ var model = {
             var ship = this.ships[i];
             var index = ship.locations.indexOf(guess);
             if (index >= 0) {
-                ships.hits[index] = "hit";
+                ship.hits[index] = "hit";
                 view.displayHit(guess);
                 view.displayMessage("HIT!");
                 // if all ship locations hits, will add to shipsSunk count
-                if (this.shipsSunk(ship)) {
-                    view.displayMessage("You sank my battleship! There are " + (numShips - shipsSunk) + " ships still afloat.")
-                    this.shipsSunk++
+                if (this.isSunk(ship)) {
+                    view.displayMessage("You sank my battleship! There are " + (numShips - shipsSunk) + " ships still afloat.");
+                    this.shipsSunk++;
                 }
                 return true;
             }
@@ -86,10 +86,19 @@ var model = {
         } // for loop ends
 
     } // isSunk ends
-};
+}; // model ends
 
-//// testing model
+//// testing model.fire
 model.fire("53");
-//// TODO figure out why fires below aren't registering on board
+
 model.fire("06");
 model.fire("16");
+model.fire("26");
+
+model.fire("34"); 
+model.fire("24");
+model.fire("44");
+
+model.fire("12");
+model.fire("11");
+model.fire("10");
