@@ -43,7 +43,7 @@ var model = {
     shipLength: 3,
 
     // sets shipSunk status
-    shipsSunk: 0,
+    numShipsSunk: 0,
 
     // sets ship locations
     //// TODO make ship locations random
@@ -61,10 +61,11 @@ var model = {
                 ship.hits[index] = "hit";
                 view.displayHit(guess);
                 view.displayMessage("HIT!");
-                // if all ship locations hits, will add to shipsSunk count
+                // if all ship locations hits, will add to numShipsSunk count
+                //// TODO review this section, I don't think isSunk is tracking properly
                 if (this.isSunk(ship)) {
-                    view.displayMessage("You sank my battleship! There are " + (numShips - shipsSunk) + " ships still afloat.");
-                    this.shipsSunk++;
+                    view.displayMessage("You sank my battleship! There are " + (numShips - numShipsSunk) + " ships still afloat.");
+                    this.numShipsSunk++;
                 }
                 return true;
             }
@@ -89,7 +90,7 @@ var model = {
 }; // model ends
 
 //// testing model.fire
-model.fire("53");
+model.fire("53"); 
 
 model.fire("06");
 model.fire("16");
@@ -102,3 +103,5 @@ model.fire("44");
 model.fire("12");
 model.fire("11");
 model.fire("10");
+
+model.fire("05");
