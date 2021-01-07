@@ -35,7 +35,7 @@ var view = {
 //view.displayMessage('Testing one, two, three.');
 
 
-// sets board settings and fire method
+// sets board settings and fire function
 var model = {
     // sets board size, ship length, and number of ships for future customization
     boardSize: 7,
@@ -106,9 +106,8 @@ var model = {
 // model.fire("10");
 
 
-// collects, processes, and tracks user guesses
+// validates user guesses
 function parseGuess(guess) {
-
     // TODO once boardSize can be customized, update these hardcoded arrays
     var alphabetRow = ["A", "B", "C", "D", "E", "F", "G"];
     var numberColumn = ["1", "2", "3", "4", "5", "6", "7"]; // setting this array in addition to alphabet
@@ -133,7 +132,7 @@ function parseGuess(guess) {
             view.displayMessage("Not a valid entry. Please enter a letter and number listed on the board.")
         }
 
-        // if all requirements met, then return parsed guess guess
+        // if all requirements met, then return parsed guess
         else {
             // putting in empty string forces code to treat all entries as a string so that we can concatenate successfully! otherwise, will simply add row + column
             // solution source: https://stackoverflow.com/questions/1723716/how-to-concatenate-two-numbers-in-javascript#:~:text=log%20of%20base.-,Math.,log(base).&text=You%20can%20also%20use%20toString,it%20to%20string%20and%20concatenate.
@@ -147,8 +146,44 @@ function parseGuess(guess) {
 } // parseGuess ends
 
 //// testing parseGuess
-console.log(parseGuess("A1"));
-console.log(parseGuess("B7"));
-console.log(parseGuess("G4"));
-console.log(parseGuess("H1"));
-console.log(parseGuess("A8"));
+//console.log(parseGuess("A1"));
+//console.log(parseGuess("B7"));
+//console.log(parseGuess("G4"));
+//console.log(parseGuess("H1"));
+//console.log(parseGuess("A8"));
+
+// tracks guesses, updates model, and determines when game is over
+var controller = {
+    numGuesses: 0,
+
+    processGuess: function(guess) {
+        var location = parseGuess(guess);
+
+        if (location) {
+            this.numGuesses++;
+            var hit = model.fire(location);
+
+            //if guess was a hit and the number of ships sunk matches numShips, then game is won
+            if (hit && model.numShipsSunk === model.numShips) {
+                view.displayMessage('You sank all my battleships in ' + this.numGuesses + ' guesses.');
+            }
+        }
+    } // processGuess ends
+
+} // controller ends
+
+//// testing controller
+controller.processGuess("A1"); // misses
+
+controller.processGuess("A7"); // all hits
+controller.processGuess("B7");
+controller.processGuess("C7");
+
+controller.processGuess("C5");
+controller.processGuess("D5");
+controller.processGuess("E5");
+
+controller.processGuess("B1");
+controller.processGuess("B2");
+//controller.processGuess("B3");
+
