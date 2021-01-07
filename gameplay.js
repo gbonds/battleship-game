@@ -61,11 +61,11 @@ var model = {
                 ship.hits[index] = "hit";
                 view.displayHit(guess);
                 view.displayMessage("HIT!");
+
                 // if all ship locations hits, will add to numShipsSunk count
-                //// TODO review this section, I don't think isSunk is tracking properly
                 if (this.isSunk(ship)) {
-                    view.displayMessage("You sank my battleship! There are " + (numShips - numShipsSunk) + " ships still afloat.");
                     this.numShipsSunk++;
+                    view.displayMessage('You sank my battleship! Ships still floating: ' + (model.numShips - model.numShipsSunk)); 
                 }
                 return true;
             }
@@ -84,9 +84,10 @@ var model = {
             if (ship.hits[i] !== "hit") {
                 return false;
             }
-        } // for loop ends
-
+        }
+        return true;
     } // isSunk ends
+
 }; // model ends
 
 //// testing model.fire
@@ -164,7 +165,7 @@ var controller = {
 
             //if guess was a hit and the number of ships sunk matches numShips, then game is won
             if (hit && model.numShipsSunk === model.numShips) {
-                view.displayMessage('You sank all my battleships in ' + this.numGuesses + ' guesses.');
+                view.displayMessage('You sank all ' + model.numShips + ' of my battleships in ' + this.numGuesses + ' guesses. That makes your hit accuracy ' +  Math.round(((model.numShips*model.shipLength)/this.numGuesses)*100) + '%.');
             }
         }
     } // processGuess ends
