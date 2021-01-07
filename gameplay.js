@@ -47,7 +47,7 @@ var model = {
 
     // sets ship locations
     //// TODO make ship locations random
-    ships: [ { locations: ['06', '16', '26'], hits: ['', '', ''] },
+    ships: [{ locations: ['06', '16', '26'], hits: ['', '', ''] },
     { locations: ['24', '34', '44'], hits: ['', '', ''] },
     { locations: ['10', '11', '12'], hits: ['', '', ''] }
     ],
@@ -90,18 +90,65 @@ var model = {
 }; // model ends
 
 //// testing model.fire
-model.fire("53"); 
+// model.fire("53"); // these two should be misses
+// model.fire("05");
 
-model.fire("06");
-model.fire("16");
-model.fire("26");
+// model.fire("06"); // rest should be hits
+// model.fire("16");
+// model.fire("26");
 
-model.fire("34"); 
-model.fire("24");
-model.fire("44");
+// model.fire("34");
+// model.fire("24");
+// model.fire("44");
 
-model.fire("12");
-model.fire("11");
-model.fire("10");
+// model.fire("12");
+// model.fire("11");
+// model.fire("10");
 
-model.fire("05");
+
+// collects, processes, and tracks user guesses
+function parseGuess(guess) {
+
+    // TODO once boardSize can be customized, update these hardcoded arrays
+    var alphabetRow = ["A", "B", "C", "D", "E", "F", "G"];
+    var numberColumn = ["1", "2", "3", "4", "5", "6", "7"]; // setting this array in addition to alphabet
+
+    if (guess === null || guess.length !== 2) {
+        view.displayMessage("Not a valid entry length. Please enter a letter and number on the board such as A1 or B2.");
+    } 
+    
+    else {
+        // TODO allow users to enter lower case letters. right now, it only accepts upper case letters as valid entry
+        var firstChar = guess.charAt(0); // inspects the first character of guess
+        var row = alphabetRow.indexOf(firstChar); // compares it to alphabet array
+
+        var secondChar = guess.charAt(1) // inspects second character of guess
+        var column = numberColumn.indexOf(secondChar); // compares to number array
+
+        if ( isNaN(row) || isNaN(column) ) {
+            view.displayMessage("Not a valid entry combo. Please enter a letter and number on the board such as A1 or B2.")
+        }
+
+        else if (row < 0 || row >= model.boardSize || column < 0 || column >= model.boardSize) {
+            view.displayMessage("Not a valid entry. Please enter a letter and number listed on the board.")
+        }
+
+        // if all requirements met, then return parsed guess guess
+        else {
+            // putting in empty string forces code to treat all entries as a string so that we can concatenate successfully! otherwise, will simply add row + column
+            // solution source: https://stackoverflow.com/questions/1723716/how-to-concatenate-two-numbers-in-javascript#:~:text=log%20of%20base.-,Math.,log(base).&text=You%20can%20also%20use%20toString,it%20to%20string%20and%20concatenate.
+            return '' + row + column; 
+        }
+    } // else ends
+
+    // if any checks fail, return null
+    return null;
+
+} // parseGuess ends
+
+//// testing parseGuess
+console.log(parseGuess("A1"));
+console.log(parseGuess("B7"));
+console.log(parseGuess("G4"));
+console.log(parseGuess("H1"));
+console.log(parseGuess("A8"));
