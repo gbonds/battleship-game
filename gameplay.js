@@ -117,11 +117,10 @@ function parseGuess(guess) {
     } 
     
     else {
-        // TODO allow users to enter lower case letters. right now, it only accepts upper case letters as valid entry toUppercase
-        var firstChar = guess.charAt(0); // inspects the first character of guess
+        var firstChar = guess.charAt(0).toUpperCase(); // gets the first character of guess AND transforms any lowercase letters to uppercase so they strictly match array.
         var row = alphabetRow.indexOf(firstChar); // compares it to alphabet array
 
-        var secondChar = guess.charAt(1) // inspects second character of guess
+        var secondChar = guess.charAt(1) // gets second character of guess
         var column = numberColumn.indexOf(secondChar); // compares to number array
 
         if ( isNaN(row) || isNaN(column) ) {
