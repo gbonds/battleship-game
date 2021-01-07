@@ -47,7 +47,7 @@ var model = {
 
     // sets ship locations
     //// TODO make ship locations random
-    ships: [{ locations: ['06', '16', '26'], hits: ['', '', ''] },
+    shipFleet: [{ locations: ['06', '16', '26'], hits: ['', '', ''] },
     { locations: ['24', '34', '44'], hits: ['', '', ''] },
     { locations: ['10', '11', '12'], hits: ['', '', ''] }
     ],
@@ -55,7 +55,7 @@ var model = {
     // sets fire based on user guess
     fire: function (guess) {
         for (var i = 0; i < this.numShips; i++) {
-            var ship = this.ships[i];
+            var ship = this.shipFleet[i];
             var index = ship.locations.indexOf(guess);
             if (index >= 0) {
                 ship.hits[index] = "hit";
@@ -117,7 +117,7 @@ function parseGuess(guess) {
     } 
     
     else {
-        // TODO allow users to enter lower case letters. right now, it only accepts upper case letters as valid entry
+        // TODO allow users to enter lower case letters. right now, it only accepts upper case letters as valid entry toUppercase
         var firstChar = guess.charAt(0); // inspects the first character of guess
         var row = alphabetRow.indexOf(firstChar); // compares it to alphabet array
 
@@ -173,17 +173,47 @@ var controller = {
 } // controller ends
 
 //// testing controller
-controller.processGuess("A1"); // misses
+//controller.processGuess("A1"); // misses
 
-controller.processGuess("A7"); // all hits
-controller.processGuess("B7");
-controller.processGuess("C7");
+//controller.processGuess("A7"); // all hits
+//controller.processGuess("B7");
+//controller.processGuess("C7");
 
-controller.processGuess("C5");
-controller.processGuess("D5");
-controller.processGuess("E5");
+//controller.processGuess("C5");
+//controller.processGuess("D5");
+//controller.processGuess("E5");
 
-controller.processGuess("B1");
-controller.processGuess("B2");
+//controller.processGuess("B1");
+//controller.processGuess("B2");
 //controller.processGuess("B3");
 
+// collects user guess via fireButton
+function init() {
+    // handler for when user presses button
+    var fireButton = document.getElementById('fireButton');
+    fireButton.onclick = handleFireButton;
+
+    // handler for when user presses enter key
+    var guessInput = document.getElementById('guessInput');
+    guessInput.onkeypress = handleKeyPress;
+}
+
+function handleFireButton() {
+    var guessInput = document.getElementById("guessInput");
+    var guess = guessInput.value;
+    controller.processGuess(guess);
+
+    // resets form to empty field after submitting
+    guessInput.value = '';
+}
+
+function handleKeyPress (e) {
+    var fireButton = document.getElementById("fireButton");
+    if (e.keyCode === 13) {
+        fireButton.click();
+        return false;
+    }
+}
+
+//// makes init function run after window is loaded. isn't there a more efficient way to make this happen?
+window.onload = init;
