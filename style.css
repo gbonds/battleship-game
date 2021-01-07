@@ -1,6 +1,7 @@
 body {
     background-color: #111111;
     color: white;
+    font-family: 'Roboto Mono', 'Courier New', monospace;
 }
 
 #board-container {
@@ -18,6 +19,7 @@ body {
 
 #messageArea {
     border: 1px solid green;
+    height: 25px;
 }
 
 #gameGrid table {
