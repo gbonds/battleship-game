@@ -2,6 +2,7 @@ body {
     background-color: #111111;
     color: white;
     font-family: 'Roboto Mono', 'Courier New', monospace;
+    font-weight: 400;
 }
 
 #board-container {
@@ -10,7 +11,6 @@ body {
     /* height: 863px; don't need height since I'm not using HFJS's background image */
     margin: auto;
     text-align: center;
-    border: 1px dotted red;
 }
 
 #board-container>div {
@@ -18,8 +18,8 @@ body {
 }
 
 #messageArea {
-    border: 1px solid green;
     height: 25px;
+    font-weight: 300;
 }
 
 #gameGrid table {
@@ -53,4 +53,37 @@ body {
 
 .miss-icon {
     color: red;
+}
+
+#guessInput {
+    height: 30px;
+    width: 50px;
+    text-align: center;
+}
+
+#fireButton {
+    font-family: 'Roboto Mono', 'Courier New', monospace;
+    font-weight: 300;
+    padding: 5px 10px;
+    height: 30px;
+    margin-left: 10px;
+    background-color: yellow;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 4px #999;
+   
+}
+
+#fireButton:hover {
+    background-color: hsl(60, 99%, 39%); /* a slightly darker yellow */
+    cursor: pointer;
+    transition: .5s;
+}
+
+#fireButton:active {
+    background-color: hsl(60, 99%, 39%);
+    box-shadow: 0 2px #666;
+    transform: translateY(4px);
+    font-weight: bolder;
 }
