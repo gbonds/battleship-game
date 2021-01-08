@@ -109,10 +109,10 @@ var model = {
         if (direction === 1) {
             // generates originating location for horizontal ship
             row = Math.floor(Math.random() * this.boardSize);
-            col = Math.floor(Math.random * ((this.boardSize - this.shipLength) + 1)); // diverging from HFJS code, which has (boardSize - (shipLen + 1)), which I think would make location generation fall short of full available starting locations.
+            col = Math.floor(Math.random() * ((this.boardSize - this.shipLength) + 1)); // diverging from HFJS code, which has (boardSize - (shipLen + 1)), which I think would make location generation fall short of full available starting locations.
         } else {
             // generates originating location for vertical ship
-            row = Math.floor(Math.random * ((this.boardSize - this.shipLength) + 1)); // diverging from HFJS code, which has (boardSize - (shipLen + 1)), which I think would make location generation fall short of full available starting locations.
+            row = Math.floor(Math.random() * ((this.boardSize - this.shipLength) + 1)); // diverging from HFJS code, which has (boardSize - (shipLen + 1)), which I think would make location generation fall short of full available starting locations.
             col = Math.floor(Math.random() * this.boardSize);
         }
 
@@ -120,10 +120,10 @@ var model = {
         for (var i = 0; i < this.shipLength; i++) {
             if (direction === 1) {
                 // adds locations to array for new horizontal ship
-                newShipLocations.push('' + row + (col + i));
+                newShipLocations.push(row + '' + (col + i));
             } else {
                 // adds locations to array for new vertical ship
-                newShipLocations.push('' + (row + i) + col);
+                newShipLocations.push((row + i) + '' + col);
             }
         } // for loop ends
 
