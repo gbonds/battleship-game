@@ -47,9 +47,9 @@ var model = {
 
     // sets ship locations
     //// TODO make ship locations random
-    shipFleet: [{ locations: ['06', '16', '26'], hits: ['', '', ''] },
-    { locations: ['24', '34', '44'], hits: ['', '', ''] },
-    { locations: ['10', '11', '12'], hits: ['', '', ''] }
+    shipFleet: [{ locations: ['0', '0', '0'], hits: ['', '', ''] },
+    { locations: ['0', '0', '0'], hits: ['', '', ''] },
+    { locations: ['0', '0', '0'], hits: ['', '', ''] }
     ],
 
     // sets fire based on user guess
@@ -65,7 +65,7 @@ var model = {
                 // if all ship locations hits, will add to numShipsSunk count
                 if (this.isSunk(ship)) {
                     this.numShipsSunk++;
-                    view.displayMessage('You sank my battleship! Ships still floating: ' + (model.numShips - model.numShipsSunk)); 
+                    view.displayMessage('You sank my battleship! Ships still floating: ' + (model.numShips - model.numShipsSunk));
                 }
                 return true;
             }
@@ -86,7 +86,71 @@ var model = {
             }
         }
         return true;
-    } // isSunk ends
+    }, // isSunk ends
+
+    // fills model's ship arrays with locations and checks for overlap
+    generateShipLocations: function () {
+        var locations;
+
+        // generates new set of locations and checks to see if location overlaps with any existing ships
+        for (var i = 0; i < this.numShips; i++) {
+            do {
+                locations = this.generateShipLocations();
+            } while (this.checkOverlap(locations));
+            this.shipFleet[i].locations = locations;
+        }
+    }, // generateShipLoc ends
+
+    // sets ship direction and locations
+    generateShip: function () {
+        var direction = Math.floor(Math.random() * 2);
+        var row;
+        var col;
+
+        if (direction === 1) {
+            // generates originating location for horizontal ship
+            row = Math.floor(Math.random() * this.boardSize);
+            col = Math.floor(Math.random * ((this.boardSize - this.shipLength) + 1)); // diverging from HFJS code, which has (boardSize - (shipLen + 1)), which I think would make location generation fall short of full available starting locations.
+        } else {
+            // generates originating location for vertical ship
+            row = Math.floor(Math.random * ((this.boardSize - this.shipLength) + 1)); // diverging from HFJS code, which has (boardSize - (shipLen + 1)), which I think would make location generation fall short of full available starting locations.
+            col = Math.floor(Math.random() * this.boardSize);
+        }
+
+        var newShipLocations = [];
+        for (var i = 0; i < this.shipLength; i++) {
+            if (direction === 1) {
+                // adds locations to array for new horizontal ship
+                newShipLocations.push('' + row + (col + i));
+            } else {
+                // adds locations to array for new vertical ship
+                newShipLocations.push('' + (row + i) + col);
+            }
+        } // for loop ends
+
+        return newShipLocations;
+
+    }, // generateShip ends
+
+    // checks for overlapping ship locations
+    checkOverlap: function (locations) {
+
+        // for each ship already on the board.... 
+        for (var i = 0; i < this.numShips; i++) {
+            var ship = this.shipFleet[i];
+
+            // ...check to see if location matches an existing ship's array of locations
+            for (var j = 0; j < locations.length; j++) {
+                if (ship.locations.indexOf(locations[j]) >= 0) {
+                    return true;
+                }
+            } // inner for loop ends
+        } // outer for loop ends
+
+        // if existing ship's locations don't match new location, there is NO overlap so return false
+        return false;
+
+    } // checkOverlap ends
 
 }; // model ends
 
@@ -115,8 +179,8 @@ function parseGuess(guess) {
 
     if (guess === null || guess.length !== 2) {
         view.displayMessage("Not a valid entry length. Please enter a letter and number on the board such as A1 or B2.");
-    } 
-    
+    }
+
     else {
         var firstChar = guess.charAt(0).toUpperCase(); // gets the first character of guess AND transforms any lowercase letters to uppercase so they strictly match array.
         var row = alphabetRow.indexOf(firstChar); // compares it to alphabet array
@@ -124,7 +188,7 @@ function parseGuess(guess) {
         var secondChar = guess.charAt(1) // gets second character of guess
         var column = numberColumn.indexOf(secondChar); // compares to number array
 
-        if ( isNaN(row) || isNaN(column) ) {
+        if (isNaN(row) || isNaN(column)) {
             view.displayMessage("Not a valid entry combo. Please enter a letter and number on the board such as A1 or B2.")
         }
 
@@ -136,7 +200,7 @@ function parseGuess(guess) {
         else {
             // putting in empty string forces code to treat all entries as a string so that we can concatenate successfully! otherwise, will simply add row + column
             // solution source: https://stackoverflow.com/questions/1723716/how-to-concatenate-two-numbers-in-javascript#:~:text=log%20of%20base.-,Math.,log(base).&text=You%20can%20also%20use%20toString,it%20to%20string%20and%20concatenate.
-            return '' + row + column; 
+            return '' + row + column;
         }
     } // else ends
 
@@ -156,7 +220,7 @@ function parseGuess(guess) {
 var controller = {
     numGuesses: 0,
 
-    processGuess: function(guess) {
+    processGuess: function (guess) {
         var location = parseGuess(guess);
 
         if (location) {
@@ -165,7 +229,7 @@ var controller = {
 
             //if guess was a hit and the number of ships sunk matches numShips, then game is won
             if (hit && model.numShipsSunk === model.numShips) {
-                view.displayMessage('You sank all ' + model.numShips + ' of my battleships in ' + this.numGuesses + ' guesses. That makes your hit accuracy ' +  Math.round(((model.numShips*model.shipLength)/this.numGuesses)*100) + '%.');
+                view.displayMessage('You sank all ' + model.numShips + ' of my battleships in ' + this.numGuesses + ' guesses. That makes your hit accuracy ' + Math.round(((model.numShips * model.shipLength) / this.numGuesses) * 100) + '%.');
             }
         }
     } // processGuess ends
@@ -196,6 +260,8 @@ function init() {
     // handler for when user presses enter key
     var guessInput = document.getElementById('guessInput');
     guessInput.onkeypress = handleKeyPress;
+
+    model.generateShipLocations();
 }
 
 function handleFireButton() {
@@ -207,7 +273,7 @@ function handleFireButton() {
     guessInput.value = '';
 }
 
-function handleKeyPress (e) {
+function handleKeyPress(e) {
     var fireButton = document.getElementById("fireButton");
     if (e.keyCode === 13) {
         fireButton.click();
