@@ -45,8 +45,7 @@ var model = {
     // sets shipSunk status
     numShipsSunk: 0,
 
-    // sets ship locations
-    //// TODO make ship locations random
+    // sets ship empty locations and hits arrays
     shipFleet: [{ locations: ['0', '0', '0'], hits: ['', '', ''] },
     { locations: ['0', '0', '0'], hits: ['', '', ''] },
     { locations: ['0', '0', '0'], hits: ['', '', ''] }
@@ -95,7 +94,7 @@ var model = {
         // generates new set of locations and checks to see if location overlaps with any existing ships
         for (var i = 0; i < this.numShips; i++) {
             do {
-                locations = this.generateShipLocations();
+                locations = this.generateShip();
             } while (this.checkOverlap(locations));
             this.shipFleet[i].locations = locations;
         }
