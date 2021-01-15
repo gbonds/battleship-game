@@ -37,6 +37,7 @@ var model = {
     numShipsSunk: 0,
 
     // sets ship empty locations and hits arrays
+    // TODO once board size customizable, make sure to update Reset Board button function in addition to this array
     shipFleet: [{ locations: ['0', '0', '0'], hits: ['', '', ''] },
     { locations: ['0', '0', '0'], hits: ['', '', ''] },
     { locations: ['0', '0', '0'], hits: ['', '', ''] }
@@ -47,7 +48,7 @@ var model = {
         for (var i = 0; i < this.numShips; i++) {
             var ship = this.shipFleet[i];
             var index = ship.locations.indexOf(guess);
-            
+
             // TODO add an IF loop to prevent user from guessing same location more than once. something like if hits[i] === "hits" then displayMsg("Oops! ... Try again!")
             if (index >= 0) {
                 ship.hits[index] = "hit";
@@ -210,6 +211,10 @@ function init() {
     var fireButton = document.getElementById('fireButton');
     fireButton.onclick = handleFireButton;
 
+    // handler for when user presses Reset Board button
+    var resetButton = document.getElementById('resetButton');
+    resetButton.onclick = handleResetButton; 
+
     // handler for when user presses enter key
     var guessInput = document.getElementById('guessInput');
     guessInput.onkeypress = handleKeyPress;
@@ -226,6 +231,12 @@ function handleFireButton() {
     guessInput.value = '';
 }
 
+// resets board
+function handleResetButton() {
+    // reset model.shipFleet array here
+}
+
+// if user hits enter rather than fireButton, will activate fireButton
 function handleKeyPress(e) {
     var fireButton = document.getElementById("fireButton");
     if (e.keyCode === 13) {
@@ -236,3 +247,4 @@ function handleKeyPress(e) {
 
 //// makes init function run after window is loaded. isn't there a more efficient way to make this happen?
 window.onload = init;
+
