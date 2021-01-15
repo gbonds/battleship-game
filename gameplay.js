@@ -26,15 +26,6 @@ var view = {
     }
 };
 
-//// testing view object
-//view.displayMiss('01');
-//view.displayMiss('53');
-//view.displayHit('15');
-//view.displayHit('16');
-//view.displayHit('17');
-//view.displayMessage('Testing one, two, three.');
-
-
 // sets board settings and fire function
 var model = {
     // sets board size, ship length, and number of ships for future customization
@@ -210,13 +201,6 @@ function parseGuess(guess) {
 
 } // parseGuess ends
 
-//// testing parseGuess
-//console.log(parseGuess("A1"));
-//console.log(parseGuess("B7"));
-//console.log(parseGuess("G4"));
-//console.log(parseGuess("H1"));
-//console.log(parseGuess("A8"));
-
 // tracks guesses, updates model, and determines when game is over
 var controller = {
     numGuesses: 0,
@@ -236,21 +220,6 @@ var controller = {
     } // processGuess ends
 
 } // controller ends
-
-//// testing controller
-//controller.processGuess("A1"); // misses
-
-//controller.processGuess("A7"); // all hits
-//controller.processGuess("B7");
-//controller.processGuess("C7");
-
-//controller.processGuess("C5");
-//controller.processGuess("D5");
-//controller.processGuess("E5");
-
-//controller.processGuess("B1");
-//controller.processGuess("B2");
-//controller.processGuess("B3");
 
 // collects user guess via fireButton
 function init() {
