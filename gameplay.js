@@ -146,23 +146,6 @@ var model = {
 
 }; // model ends
 
-//// testing model.fire
-// model.fire("53"); // these two should be misses
-// model.fire("05");
-
-// model.fire("06"); // rest should be hits
-// model.fire("16");
-// model.fire("26");
-
-// model.fire("34");
-// model.fire("24");
-// model.fire("44");
-
-// model.fire("12");
-// model.fire("11");
-// model.fire("10");
-
-
 // validates user guesses
 function parseGuess(guess) {
     // TODO once boardSize can be customized, update these hardcoded arrays
