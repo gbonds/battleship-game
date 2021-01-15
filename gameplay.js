@@ -56,6 +56,8 @@ var model = {
         for (var i = 0; i < this.numShips; i++) {
             var ship = this.shipFleet[i];
             var index = ship.locations.indexOf(guess);
+            
+            // TODO add an IF loop to prevent user from guessing same location more than once. something like if hits[i] === "hits" then displayMsg("Oops! ... Try again!")
             if (index >= 0) {
                 ship.hits[index] = "hit";
                 view.displayHit(guess);
