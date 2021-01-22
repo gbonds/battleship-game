@@ -8,7 +8,7 @@
 ////////// if hit: add to hit count, add symbol, hit message
 //////////// if hit count reaches max, alert user to win
 
-// displays message for win, hit, or miss AND adds hit/miss symbols to grid cells
+// displays custom message, hit/win symbols in cells, and updates cell classes based on hit/miss
 var view = {
     displayMessage: function (msg) {
         var messageArea = document.getElementById('messageArea');
@@ -29,6 +29,7 @@ var view = {
 // sets board settings and fire function
 var model = {
     // sets board size, ship length, and number of ships for future customization
+    // TODO once board size customizable, update these properties
     boardSize: 7,
     numShips: 3,
     shipLength: 3,
@@ -36,8 +37,8 @@ var model = {
     // sets shipSunk status
     numShipsSunk: 0,
 
-    // sets ship empty locations and hits arrays
-    // TODO once board size customizable, make sure to update Reset Board button function in addition to this array
+    // sets ship fleet with arrays of empty locations and blank hits
+    // TODO once board size customizable, will this array need to change?
     shipFleet: [{ locations: ['0', '0', '0'], hits: ['', '', ''] },
     { locations: ['0', '0', '0'], hits: ['', '', ''] },
     { locations: ['0', '0', '0'], hits: ['', '', ''] }
@@ -205,7 +206,7 @@ var controller = {
 
 } // controller ends
 
-// collects user guess via fireButton
+// collects user input
 function init() {
     // handler for when user presses button
     var fireButton = document.getElementById('fireButton');
@@ -213,7 +214,7 @@ function init() {
 
     // handler for when user presses Reset Board button
     var resetButton = document.getElementById('resetButton');
-    resetButton.onclick = handleResetButton; 
+    resetButton.onclick = handleResetButton;
 
     // handler for when user presses enter key
     var guessInput = document.getElementById('guessInput');
@@ -233,7 +234,25 @@ function handleFireButton() {
 
 // resets board
 function handleResetButton() {
-    // reset model.shipFleet array here
+    // for each ship in shipFleet, resets locations and hits in arrays
+    for (var i = 0; i < model.shipFleet.length; i++) {
+        model.shipFleet[i].locations = ['0', '0', '0'];
+        model.shipFleet[i].hits = ["", "", ""];
+    };
+
+    // TODO review every aspect of stored info tracking the game, I think it mostly lives in the model object. is there a better way to fully reset game??
+
+    // removes the hit/miss classes from grid cells
+    function resetGridCells() {
+        document.getElementByTagName("TD")[0].removeAttribute("class");
+        // source: https://www.w3schools.com/jsref/met_element_removeattribute.asp
+    };
+
+    resetGridCells();
+   
+    // generates new ship locations
+    model.generateShipLocations();
+   
 }
 
 // if user hits enter rather than fireButton, will activate fireButton
