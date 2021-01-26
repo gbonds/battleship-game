@@ -232,27 +232,9 @@ function handleFireButton() {
     guessInput.value = '';
 }
 
-// resets board
+// resets page/board
 function handleResetButton() {
-    // for each ship in shipFleet, resets locations and hits in arrays
-    for (var i = 0; i < model.shipFleet.length; i++) {
-        model.shipFleet[i].locations = ['0', '0', '0'];
-        model.shipFleet[i].hits = ["", "", ""];
-    };
-
-    // TODO review every aspect of stored info tracking the game, I think it mostly lives in the model object. is there a better way to fully reset game??
-
-    // removes the hit/miss classes from grid cells
-    function resetGridCells() {
-        document.getElementByTagName("TD")[0].removeAttribute("class");
-        // source: https://www.w3schools.com/jsref/met_element_removeattribute.asp
-    };
-
-    resetGridCells();
-   
-    // generates new ship locations
-    model.generateShipLocations();
-   
+    location.reload();
 }
 
 // if user hits enter rather than fireButton, will activate fireButton
