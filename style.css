@@ -119,3 +119,15 @@ body {
     font-weight: bolder;
     background-color: hsl(0, 0%, 15%); /* a slight darker gray */
 }
+
+.playAgainButton {
+    background-color: #006300 !important; /* slightly dark green than hit symbol color */
+}
+
+.playAgainButton:hover {
+    background-color: #008600 !important; /* slightly lighter green */
+}
+
+.playAgainButton:active {
+    background-color: #015801 !important; /* slightly dark green than hit symbol color */
+}

@@ -199,7 +199,17 @@ var controller = {
 
             //if guess was a hit and the number of ships sunk matches numShips, then game is won
             if (hit && model.numShipsSunk === model.numShips) {
+                // displays win and stats
                 view.displayMessage('You sank all ' + model.numShips + ' of my battleships in ' + this.numGuesses + ' guesses. That makes your hit accuracy ' + Math.round(((model.numShips * model.shipLength) / this.numGuesses) * 100) + '%.');
+
+                // disables guess input form and fireButton
+                document.getElementById("guessInput").disabled = true;
+                fireButton.disabled = true;
+
+                // updates Reset Button text and adds Play Again styling to Reset Button
+                document.getElementById("resetButton").innerHTML = "Play Again";
+                document.getElementById("resetButton").setAttribute('class', 'playAgainButton');
+
             }
         }
     } // processGuess ends
@@ -237,7 +247,7 @@ function handleResetButton() {
     location.reload();
 }
 
-// if user hits enter rather than fireButton, will activate fireButton
+// if user hits Enter rather than fireButton, will activate fireButton
 function handleKeyPress(e) {
     var fireButton = document.getElementById("fireButton");
     if (e.keyCode === 13) {
