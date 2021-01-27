@@ -24,7 +24,8 @@ body {
 #gameGrid table {
     position: relative;
     margin: auto;
-    border-collapse: collapse; /* this prevents the td borders from doubling up */
+    border-collapse: collapse;
+    /* this prevents the td borders from doubling up */
 }
 
 .column-header {
@@ -54,6 +55,29 @@ body {
     color: red;
 }
 
+td.hit .hit-icon, 
+td.miss .miss-icon {
+    transform: scale(1,1);
+    animation: icon-animation .5s ease-out; 
+}
+
+@keyframes icon-animation {
+    50% {  
+        transform: scale(1.15, 1.15);
+    }
+}
+
+#gameGrid td.hit, 
+#gameGrid td.miss {
+ animation: cell-bg-animation .75s ease;
+}
+
+@keyframes cell-bg-animation {
+    50% {
+        background-color: #4e4e4e;  /* slightly lighter gray from td bg-color */
+    }
+}
+
 #userGuessArea {
     display: flex;
     align-items: center;
@@ -77,11 +101,11 @@ body {
     border: none;
     border-radius: 2px;
     box-shadow: 0 4px #999;
-   
 }
 
 #fireButton:hover {
-    background-color: hsl(60, 99%, 39%); /* a slightly darker yellow */
+    background-color: hsl(60, 99%, 39%);
+    /* a slightly darker yellow */
     cursor: pointer;
     transition: .5s;
 }
@@ -102,7 +126,8 @@ body {
     padding: 5px 10px;
     height: 30px;
     margin-left: 10px;
-    background-color: #2e2e2e; /* same gray as the td background color */
+    background-color: #2e2e2e;
+    /* same gray as the td background color */
     color: #ffffff;
     outline: none;
     border: none;
@@ -112,22 +137,27 @@ body {
 
 #resetButton:hover {
     font-weight: bolder;
-    background-color: hsl(0, 0%, 20%); /* a slightly lighter gray */
+    background-color: hsl(0, 0%, 20%);
+    /* a slightly lighter gray */
 }
 
 #resetButton:active {
     font-weight: bolder;
-    background-color: hsl(0, 0%, 15%); /* a slight darker gray */
+    background-color: hsl(0, 0%, 15%);
+    /* a slight darker gray */
 }
 
 .playAgainButton {
-    background-color: #006300 !important; /* slightly dark green than hit symbol color */
+    background-color: #006300 !important;
+    /* slightly dark green than hit symbol color */
 }
 
 .playAgainButton:hover {
-    background-color: #008600 !important; /* slightly lighter green */
+    background-color: #008600 !important;
+    /* slightly lighter green */
 }
 
 .playAgainButton:active {
-    background-color: #015801 !important; /* slightly dark green than hit symbol color */
+    background-color: #015801 !important;
+    /* slightly dark green than hit symbol color */
 }
