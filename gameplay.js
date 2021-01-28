@@ -12,7 +12,12 @@
 var view = {
     displayMessage: function (msg) {
         var messageArea = document.getElementById('messageArea');
-        messageArea.innerHTML = msg;
+        n = msg.length;
+        if (n < 6) {
+            messageArea.innerHTML = '<span class="new-message_short">' + msg + '</span>';
+        } else {
+            messageArea.innerHTML = '<span class="new-message_standard">' + msg + '</span>';
+        }
     },
     displayHit: function (location) {
         var cell = document.getElementById(location);
@@ -55,7 +60,7 @@ var model = {
                 ship.hits[index] = "hit";
                 view.displayHit(guess);
                 view.displayMessage("HIT!");
-
+                
                 // if all ship locations hits, will add to numShipsSunk count
                 if (this.isSunk(ship)) {
                     this.numShipsSunk++;

@@ -21,6 +21,27 @@ body {
     font-weight: 300;
 }
 
+.new-message_standard {
+    color: hsla(0, 0%, 100%, 0); /* text is completely transparent */
+    animation: message-animation 4s ease-in;
+}
+
+.new-message_short {
+    color: hsla(0, 0%, 100%, 0); /* text is completely transparent */
+    animation: message-animation .75s ease-in;
+}
+
+@keyframes message-animation {
+    30% {
+        color: white;
+    }
+
+    60% {
+        color: white;
+    }
+}
+
+
 #gameGrid table {
     position: relative;
     margin: auto;
