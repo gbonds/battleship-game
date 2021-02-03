@@ -1,0 +1,16 @@
+TODO LIST
+in order of priority
+as of 2/3/21
+
+QA: Safari  - messageArea hidden behind gameGrid, could see the end of the final stats message.
+            - Reset Board button expanding on hover to accommodate larger text, when it should just be making text bolder
+
+QA: FireFox - Reset Board button bold text looks too fuzzy, is there a better way to emphasize on hover? maybe make font slightly larger so there's more space between letters?
+
+-clickable table cells
+
+-displayMessage for duplicate guess (currently animation emphasizes hit/miss icon without highlighting bg like it does for the initial hit/miss)
+
+-night/day toggle (probably should use CSS variables)
+
+-add a README?
