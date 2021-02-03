@@ -26,111 +26,98 @@
 
   <div id="board-container">
 
-    <div id="infoViewArea">
+    <div id="view-container">
       <h1>Play Battleship!</h1>
-      <div id="messageArea">Enter your guess in the form below.</div>
-    </div> <!-- #infoViewArea ends -->
 
-    <div id="gameGrid">
-      <table>
-        <tr>
-          <!-- top header row-->
-          <th class="grid-header column-header"></th>
-          <th class="grid-header column-header">1</th>
-          <th class="grid-header column-header">2</th>
-          <th class="grid-header column-header">3</th>
-          <th class="grid-header column-header">4</th>
-          <th class="grid-header column-header">5</th>
-          <th class="grid-header column-header">6</th>
-          <th class="grid-header column-header">7</th>
-        </tr>
-        <tr>
-          <!-- row 1 -->
-          <th class="grid-header row-header">A</th>
-          <td id="00"></td>
-          <td id="01"></td>
-          <td id="02"></td>
-          <td id="03"></td>
-          <td id="04"></td>
-          <td id="05"></td>
-          <td id="06"></td>
-        </tr>
-        <tr>
-          <!-- row 2 -->
-          <th class="grid-header row-header">B</th>
-          <td id="10"></td>
-          <td id="11"></td>
-          <td id="12"></td>
-          <td id="13"></td>
-          <td id="14"></td>
-          <td id="15"></td>
-          <td id="16"></td>
-        </tr>
-        <tr>
-          <!-- row 3 -->
-          <th class="grid-header row-header">C</th>
-          <td id="20"></td>
-          <td id="21"></td>
-          <td id="22"></td>
-          <td id="23"></td>
-          <td id="24"></td>
-          <td id="25"></td>
-          <td id="26"></td>
-        </tr>
-        <tr>
-          <!-- row 4 -->
-          <th class="grid-header row-header">D</th>
-          <td id="30"></td>
-          <td id="31"></td>
-          <td id="32"></td>
-          <td id="33"></td>
-          <td id="34"></td>
-          <td id="35"></td>
-          <td id="36"></td>
-        </tr>
-        <tr>
-          <!-- row 5 -->
-          <th class="grid-header row-header">E</th>
-          <td id="40"></td>
-          <td id="41"></td>
-          <td id="42"></td>
-          <td id="43"></td>
-          <td id="44"></td>
-          <td id="45"></td>
-          <td id="46"></td>
-        </tr>
-        <tr>
-          <!-- row 6 -->
-          <th class="grid-header row-header">F</th>
-          <td id="50"></td>
-          <td id="51"></td>
-          <td id="52"></td>
-          <td id="53"></td>
-          <td id="54"></td>
-          <td id="55"></td>
-          <td id="56"></td>
-        </tr>
-        <tr>
-          <!-- row 7 -->
-          <th class="grid-header row-header">G</th>
-          <td id="60"></td>
-          <td id="61"></td>
-          <td id="62"></td>
-          <td id="63"></td>
-          <td id="64"></td>
-          <td id="65"></td>
-          <td id="66"></td>
-        </tr>
-      </table>
-    </div> <!-- #gameGrid ends -->
+      <div id="userGuessArea">
+        <form>
+          <input type="text" id="guessInput" placeholder="A1" autocomplete="off">
+          <input type="button" id="fireButton" value="Fire!">
+        </form>
+      </div> <!--  #userGuessArea ends-->
 
-    <div id="userGuessArea">
-      <form>
-        <input type="text" id="guessInput" placeholder="A1">
-        <input type="button" id="fireButton" value="Fire!">
-      </form>
+      <div id="msgViewArea">
+        <div id="messageArea">Enter your guess in the form above.</div>
+      </div> <!-- #msgViewArea ends -->
 
-    </div> <!--  #userGuessArea ends-->
+    </div> <!-- #view-container ends -->
+
+    <div id="grid-container">
+      <div id="gameGrid">
+        <!-- column header row-->
+        <div class="column-header"></div>
+        <div class="column-header">1</div>
+        <div class="column-header">2</div>
+        <div class="column-header">3</div>
+        <div class="column-header">4</div>
+        <div class="column-header">5</div>
+        <div class="column-header">6</div>
+        <div class="column-header">7</div>
+        <!-- row 1 -->
+        <div class="row-header">A</div>
+        <div id="00"></div>
+        <div id="01"></div>
+        <div id="02"></div>
+        <div id="03"></div>
+        <div id="04"></div>
+        <div id="05"></div>
+        <div id="06"></div>
+        <!-- row 2 -->
+        <div class="row-header">B</div>
+        <div id="10"></div>
+        <div id="11"></div>
+        <div id="12"></div>
+        <div id="13"></div>
+        <div id="14"></div>
+        <div id="15"></div>
+        <div id="16"></div>
+        <!-- row 3 -->
+        <div class="row-header">C</div>
+        <div id="20"></div>
+        <div id="21"></div>
+        <div id="22"></div>
+        <div id="23"></div>
+        <div id="24"></div>
+        <div id="25"></div>
+        <div id="26"></div>
+        <!-- row 4 -->
+        <div class="row-header">D</div>
+        <div id="30"></div>
+        <div id="31"></div>
+        <div id="32"></div>
+        <div id="33"></div>
+        <div id="34"></div>
+        <div id="35"></div>
+        <div id="36"></div>
+        <!-- row 5 -->
+        <div class="row-header">E</div>
+        <div id="40"></div>
+        <div id="41"></div>
+        <div id="42"></div>
+        <div id="43"></div>
+        <div id="44"></div>
+        <div id="45"></div>
+        <div id="46"></div>
+        <!-- row 6 -->
+        <div class="row-header">F</div>
+        <div id="50"></div>
+        <div id="51"></div>
+        <div id="52"></div>
+        <div id="53"></div>
+        <div id="54"></div>
+        <div id="55"></div>
+        <div id="56"></div>
+        <!-- row 7 -->
+        <div class="row-header">G</div>
+        <div id="60"></div>
+        <div id="61"></div>
+        <div id="62"></div>
+        <div id="63"></div>
+        <div id="64"></div>
+        <div id="65"></div>
+        <div id="66"></div>
+      </div> <!-- #gameGrid ends -->
+    </div> <!-- #game-grid-container ends-->
 
   </div> <!-- #board-container ends -->
 
