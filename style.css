@@ -4,105 +4,41 @@ body {
     font-family: 'Roboto Mono', 'Courier New', monospace;
     font-weight: 400;
     margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
 }
 
 #board-container {
-    position: relative;
-    width: 1024px;
-    margin: auto;
+    display: flex;
+    flex-flow: column;
+    width: 95vw;
+    height: 85vh;
+    max-width: 1024px;
     text-align: center;
+    padding-top: .25rem;
 }
 
-#board-container>div {
-    margin: 25px 0px;
+/*========================================
+VIEW CONTAINER
+========================================*/
+
+#view-container {
+    height: 30vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
 }
 
-#messageArea {
-    font-weight: 300;
-}
-
-.new-message_standard {
-    color: hsla(0, 0%, 100%, 0); /* text is completely transparent */
-    animation: message-animation 4s ease-in;
-}
-
-.new-message_short {
-    color: hsla(0, 0%, 100%, 0); /* text is completely transparent */
-    animation: message-animation .75s ease-in;
-}
-
-@keyframes message-animation {
-    30% {
-        color: white;
-    }
-
-    60% {
-        color: white;
-    }
-}
-
-
-#gameGrid table {
-    position: relative;
-    margin: auto;
-    border-collapse: collapse;
-    /* this prevents the td borders from doubling up */
-}
-
-.column-header {
-    padding-bottom: 10px;
-}
-
-.row-header {
-    padding-right: 15px;
-}
-
-#gameGrid td {
-    width: 94px;
-    height: 94px;
-    background-color: #2e2e2e;
-    border: 1px solid white;
-}
-
-#gameGrid .fas {
-    font-size: 48px;
-}
-
-.hit-icon {
-    color: green;
-}
-
-.miss-icon {
-    color: red;
-}
-
-td.hit .hit-icon, 
-td.miss .miss-icon {
-    transform: scale(1,1);
-    animation: icon-animation .5s ease-out; 
-}
-
-@keyframes icon-animation {
-    50% {  
-        transform: scale(1.15, 1.15);
-    }
-}
-
-#gameGrid td.hit, 
-#gameGrid td.miss {
- animation: cell-bg-animation .75s ease;
-}
-
-@keyframes cell-bg-animation {
-    50% {
-        background-color: #4e4e4e;  /* slightly lighter gray from td bg-color */
-    }
+#view-container h1 {
+    margin: 0;
 }
 
 #userGuessArea {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem 0;
 }
 
 #guessInput {
@@ -137,6 +73,139 @@ td.miss .miss-icon {
     transform: translateY(4px);
     font-weight: bolder;
 }
+
+#messageArea {
+    font-weight: 300;
+}
+
+.new-message_standard {
+    color: hsla(0, 0%, 100%, 0);
+    /* text is completely transparent */
+    animation: message-animation 4s ease-in;
+}
+
+.new-message_short {
+    color: hsla(0, 0%, 100%, 0);
+    /* text is completely transparent */
+    animation: message-animation .75s ease-in;
+}
+
+@keyframes message-animation {
+    30% {
+        color: white;
+    }
+    60% {
+        color: white;
+    }
+}
+
+/*========================================
+GRID CONTAINER
+========================================*/
+
+#grid-container {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    margin-top: 2.5rem;
+    height: 100%;
+    /* #view-container has set 30vh, #grid-container should fill 100% of remaining space */
+}
+
+@media only screen and (min-width: 768px) {
+    /* tablet and larger */
+    #grid-container {
+        align-items: center;
+        margin-top: 0;
+    }
+}
+
+#gameGrid {
+    display: grid;
+    background-color: #2e2e2e;
+    margin-right: 10vmin;
+    grid-template-rows: repeat(8, 9vmin);
+    grid-template-columns: repeat(8, 9vmin);
+    /* NOTE ON MARGIN & GRID-TEMPLATE: 
+    these settings make the grid appear centered, otherwise grid will be centered based on
+     the grid cells AND the column/row headers (A-G, 1-7). 
+    margin-right will be 1/10th size of container grid will be 9/10th size of container */
+}
+
+#gameGrid div {
+    border: .025rem solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameGrid .column-header {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    background-color: #111111;
+    /* should match body bg-color */
+    padding-top: 25%;
+}
+
+#gameGrid .column-header:first-child {
+    /* removes the extra line not removed by regular .column-header styling */
+    border-bottom: none;
+}
+
+#gameGrid .row-header {
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    background-color: #111111;
+    /* should match body bg-color */
+    padding-left: 25%;
+}
+
+#gameGrid .fas {
+    font-size: 7vw;
+}
+
+@media only screen and (min-width: 1024px) {
+    /* large laptop so that icon doesn't touch border of cell */
+    #gameGrid .fas {
+        font-size: 4vw;
+    }
+}
+
+.hit-icon {
+    color: green;
+}
+
+.miss-icon {
+    color: red;
+}
+
+div.hit .hit-icon, div.miss .miss-icon {
+    transform: scale(1, 1);
+    animation: icon-animation .5s ease-out;
+}
+
+@keyframes icon-animation {
+    50% {
+        transform: scale(1.15, 1.15);
+    }
+}
+
+#gameGrid div.hit, #gameGrid div.miss {
+    animation: cell-bg-animation .75s ease;
+}
+
+@keyframes cell-bg-animation {
+    50% {
+        background-color: #4e4e4e;
+        /* slightly lighter gray from div bg-color */
+    }
+}
+
+/*========================================
+RESET/PLAY AGAIN BUTTON
+========================================*/
 
 #resetButton {
     position: absolute;
